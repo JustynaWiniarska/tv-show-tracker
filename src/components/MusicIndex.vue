@@ -1,10 +1,10 @@
 <template>
   <table class="table is-fullwidth is-striped is-hoverable is-narrow">
     <thead>
-      <th style="width: 30%">Artist</th>
-      <th style="width: 30%">Title</th>
-      <th style="width: 30%">Album</th>
-      <th style="width: 20%">Genre</th>
+      <th style="width: 30%"><a @click="changeSort('artist')">Artist</a></th>
+      <th style="width: 30%"><a @click="changeSort('title')">Title</a></th>
+      <th style="width: 30%"><a @click="changeSort('album')">Album</a></th>
+      <th style="width: 20%"><a @click="changeSort('genre')">Genre</a></th>
     </thead>
     <tbody 
       v-for="(song, index) in sortedSongs" 
