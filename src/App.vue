@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <h1>Music Library</h1>
-    <font-awesome-icon icon="coffee" />
-    <router-view></router-view>
+    <MusicIndex />
+    
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
-
+import MusicIndex from './components/MusicIndex.vue'
 
 export default {
   name: 'App',
-
+  components: {
+    MusicIndex
+  }
 }
 </script>
 
