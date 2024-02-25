@@ -6,9 +6,9 @@ import 'bulma/css/bulma.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faCoffee)
+library.add(fas)
 
 const app = createApp(App)
 
@@ -19,10 +19,11 @@ app.config.productionTip = false
 app.use(router)
 
 
-
 // Use FontAwesome globally
 app.component('font-awesome-icon', FontAwesomeIcon)
 
+// Add Vue.component for 'fa-icon'
+app.component('fa-icon', FontAwesomeIcon)
 
 // Mount the app
 app.mount('#app')

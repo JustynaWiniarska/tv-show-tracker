@@ -1,10 +1,27 @@
 <template>
   <table class="table is-fullwidth is-striped is-hoverable is-narrow">
     <thead>
-      <th style="width: 30%"><a @click="changeSort('artist')">Artist</a></th>
-      <th style="width: 30%"><a @click="changeSort('title')">Title</a></th>
-      <th style="width: 30%"><a @click="changeSort('album')">Album</a></th>
-      <th style="width: 20%"><a @click="changeSort('genre')">Genre</a></th>
+      <th style="width: 30%">
+        <a @click="changeSort('artist')">Artist
+          <fa-icon icon="chevron-up" v-if="sortBy === 'artist' && sortDirection === 'asc'" />
+          <fa-icon icon="chevron-down" v-if="sortBy === 'artist' && sortDirection === 'desc'" />
+        </a>
+      </th>
+      <th style="width: 30%">
+        <a @click="changeSort('title')">Title
+          <fa-icon icon="chevron-up" v-if="sortBy === 'title' && sortDirection === 'asc'" />
+          <fa-icon icon="chevron-down" v-if="sortBy === 'title' && sortDirection === 'desc'" />
+      </a></th>
+      <th style="width: 30%">
+        <a @click="changeSort('album')">Album
+          <fa-icon icon="chevron-up" v-if="sortBy === 'album' && sortDirection === 'asc'" />
+          <fa-icon icon="chevron-down" v-if="sortBy === 'album' && sortDirection === 'desc'" />
+        </a></th>
+      <th style="width: 20%">
+        <a @click="changeSort('genre')">Genre
+          <fa-icon icon="chevron-up" v-if="sortBy === 'genre' && sortDirection === 'asc'" />
+          <fa-icon icon="chevron-down" v-if="sortBy === 'genre' && sortDirection === 'desc'" />
+        </a></th>
     </thead>
     <tbody 
       v-for="(song, index) in sortedSongs" 
