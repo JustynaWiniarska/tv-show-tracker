@@ -2,7 +2,6 @@
   <div id="app">
     <h1>Music Library</h1>
     <MusicIndex />
-    
     <!-- <router-view></router-view> -->
   </div>
 </template>

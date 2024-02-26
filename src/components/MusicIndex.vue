@@ -23,25 +23,18 @@
           <fa-icon icon="chevron-down" v-if="sortBy === 'genre' && sortDirection === 'desc'" />
         </a></th>
     </thead>
-    <tbody 
-      v-for="(song, index) in sortedSongs" 
-      :key="index"
-      class="has-text-left"
-    >
-      <tr>
-        <td>{{ song.artist }}</td>
-        <td>{{ song.title }}</td>
-        <td>{{ song.album }}</td>
-        <td>{{ song.genre }}</td>
-      </tr>
-    </tbody>
+    <PaginatedTableBody :items="sortedSongs" />
   </table>
 </template>
 
 <script>
 import MusicData from '@/assets/list.json'
+import PaginatedTableBody from './PaginatedTableBody.vue';
 
 export default {
+  components: {
+    PaginatedTableBody,
+  },
   data () {
     return {
       songs: MusicData,
