@@ -4,6 +4,7 @@
 
     <p v-for="playlist in playlists"
       :key="playlist.slug"
+      class="panel-block"
     >
       <span class="panel-icon"><fa-icon icon="book" /></span>
       {{ playlist.name }}
