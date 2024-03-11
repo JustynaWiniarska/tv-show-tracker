@@ -8,7 +8,9 @@
       <td>{{ song.artist }}</td>
       <td>{{ song.title }}</td>
       <td>{{ song.album }}</td>
-      <td>{{ song.genre }}</td>
+      <td>{{ song.genre }}
+        <span class="add-icon"><fa-icon icon="plus" @click="openModal" /></span>
+      </td>
     </tr>
   </tbody>
 </template>
@@ -51,6 +53,17 @@ export default {
     items() {
       this.page = 1
     }
+  },
+  methods: {
+    openModal() {
+      console.log('Opening Modal')
+    }
   }
 }
 </script>
+
+<style>
+.add-icon {
+  float: right
+}
+</style>
