@@ -1,15 +1,25 @@
 <template>
   <nav class="panel">
+    <a class="panel-block">
+      <router-link to="/">All Songs</router-link>
+    </a>
+
     <p class="panel-heading">Playlists</p>
 
-    <p v-for="playlist in playlists"
+    <p v-for="(playlist, index) in playlists"
       :key="playlist.slug"
-      class="panel-block"
+      class="playlist-item"
     >
-      <span class="panel-icon"><fa-icon icon="book" /></span>
-      {{ playlist.name }}
-    </p>
+      <router-link :to="'playlist/' + playlist.slug">
+        <span class="panel-icon"><fa-icon icon="book" /></span>
+        {{ playlist.name }}
+      </router-link>
 
+
+        <a v-if="!playlist.adding" @click="enableSongAdding(index)" title="Enable adding songs"><fa-icon icon="plus" /></a>
+        <a v-if="playlist.adding" @click="disableSongAdding(index)" title="Disable adding songs"><fa-icon icon="list-ol" /></a>
+
+    </p>
     <div class="panel-block">
       <form @submit.prevent="addPlaylist">
         <div class="field has-addons">
@@ -27,7 +37,8 @@ export default {
   data () {
     return {
       newPlaylistName: '',
-      playlists: []
+      playlists: [],
+      adding: false,
     }
   },
   watch: {
@@ -39,17 +50,32 @@ export default {
     }
   },
   created() {
+    // send Playlists to local storage
     const storedPlaylists = localStorage.getItem('playlists')
     this.playlists = storedPlaylists ? JSON.parse(storedPlaylists) : []
+
+    // disable song adding
+    this.playlists.forEach((pl, index) => {
+      this.playlists[index].adding = false
+    })
   },
   methods: {
     addPlaylist() {
       this.playlists.push({
         name: this.newPlaylistName,
         slug: this.slugify(this.newPlaylistName),
+        adding: false,
         songs: []
       })
       this.newPlaylistName = ''
+    },
+    enableSongAdding (index) {
+      this.playlists[index].adding = true
+      console.log(this.playlists[index])
+    },
+    disableSongAdding (index) {
+      this.playlists[index].adding = false
+      console.log( 'disabling', this.playlists[index])
     },
     slugify (name) {
       return name.toString().toLowerCase().trim()
@@ -61,3 +87,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+</style>

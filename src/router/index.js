@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../App.vue'
 import MusicIndex from '../components/MusicIndex.vue'
+import Playlist from '../components/Playlist.vue'
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/music-index', component: MusicIndex },
+  { path: '/', component: MusicIndex },
+  { path: '/playlist/:slug', component: Playlist },
 ]
 
 const router = createRouter({
