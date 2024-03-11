@@ -1,7 +1,7 @@
 <template>
   <div class="modal-overlay">
 		<div class="modal-for-adding-songs">
-			<div class="close">
+			<div class="close" @click="$emit('close-modal')">
 				x
 			</div>
 			<h1>Which playlist do you want to add this song to?</h1>
@@ -9,6 +9,12 @@
 		</div>
   </div>
 </template>
+
+<script>
+export default {
+
+}
+</script>
 
 <style scoped>
 .modal-overlay {

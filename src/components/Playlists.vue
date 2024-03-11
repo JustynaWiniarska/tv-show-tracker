@@ -3,9 +3,7 @@
     <a class="panel-block">
       <router-link to="/">All Songs</router-link>
     </a>
-
     <p class="panel-heading">Playlists</p>
-
     <p v-for="(playlist, index) in playlists"
       :key="playlist.slug"
       class="playlist-item"

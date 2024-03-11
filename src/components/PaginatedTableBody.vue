@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     openModal() {
-      console.log('Opening Modal')
+      this.$emit('open-modal')
     }
   }
 }
