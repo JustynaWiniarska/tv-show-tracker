@@ -23,14 +23,24 @@
 </template>
 
 <script>
-// import localforage from 'localforage'
-
 export default {
   data () {
     return {
       newPlaylistName: '',
       playlists: []
     }
+  },
+  watch: {
+    playlists: {
+      handler() {
+        localStorage.setItem('playlists', JSON.stringify(this.playlists));
+      },
+      deep: true,
+    }
+  },
+  created() {
+    const storedPlaylists = localStorage.getItem('playlists')
+    this.playlists = storedPlaylists ? JSON.parse(storedPlaylists) : []
   },
   methods: {
     addPlaylist() {
@@ -50,5 +60,4 @@ export default {
     }
   }
 }
-
 </script>
