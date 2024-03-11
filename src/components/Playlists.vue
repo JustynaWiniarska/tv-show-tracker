@@ -11,17 +11,10 @@
       class="playlist-item"
     >
       <router-link :to="'playlist/' + playlist.slug">
-        <span class="panel-icon"><fa-icon icon="book" class="playlist-book-icon" /></span>
+        <span class="panel-icon"><fa-icon icon="book" class="book-icon" /></span>
         {{ playlist.name }}
       </router-link>
-
-        <span class="playlist-icons">
-          <a v-if="!playlist.adding" @click="enableSongAdding(index)" title="Enable adding songs"><fa-icon icon="plus" /></a>
-          <a v-if="playlist.adding" @click="disableSongAdding(index)" title="Disable adding songs"><fa-icon icon="list-ol" /></a>
-
-          <a @click="deletePlaylist(index)" ><fa-icon icon="trash" /></a>
-        </span>
-
+      <a @click="deletePlaylist(index)" class="trash-icon" ><fa-icon icon="trash" /></a>
     </p>
     <div class="panel-block">
       <form @submit.prevent="addPlaylist">
@@ -40,8 +33,7 @@ export default {
   data () {
     return {
       newPlaylistName: '',
-      playlists: [],
-      adding: false,
+      playlists: []
     }
   },
   watch: {
@@ -67,17 +59,9 @@ export default {
       this.playlists.push({
         name: this.newPlaylistName,
         slug: this.slugify(this.newPlaylistName),
-        adding: false,
         songs: []
       })
       this.newPlaylistName = ''
-    },
-    enableSongAdding (index) {
-      this.playlists[index].adding = true
-      console.log(this.playlists[index])
-    },
-    disableSongAdding (index) {
-      this.playlists[index].adding = false
     },
     deletePlaylist (index) {
       this.playlists.splice(index, 1)
@@ -99,11 +83,11 @@ export default {
   justify-content: space-between;
   padding: 10px 15px;
 }
-.playlist-book-icon {
+.book-icon {
   margin-top: 5px;
 }
-.playlist-icons a {
-  margin-left: 5px;
+.trash-icon svg {
   color: grey;
+  height: 14px;
 }
 </style>
