@@ -11,13 +11,16 @@
       class="playlist-item"
     >
       <router-link :to="'playlist/' + playlist.slug">
-        <span class="panel-icon"><fa-icon icon="book" /></span>
+        <span class="panel-icon"><fa-icon icon="book" class="playlist-book-icon" /></span>
         {{ playlist.name }}
       </router-link>
 
+        <span class="playlist-icons">
+          <a v-if="!playlist.adding" @click="enableSongAdding(index)" title="Enable adding songs"><fa-icon icon="plus" /></a>
+          <a v-if="playlist.adding" @click="disableSongAdding(index)" title="Disable adding songs"><fa-icon icon="list-ol" /></a>
 
-        <a v-if="!playlist.adding" @click="enableSongAdding(index)" title="Enable adding songs"><fa-icon icon="plus" /></a>
-        <a v-if="playlist.adding" @click="disableSongAdding(index)" title="Disable adding songs"><fa-icon icon="list-ol" /></a>
+          <a @click="deletePlaylist(index)" ><fa-icon icon="trash" /></a>
+        </span>
 
     </p>
     <div class="panel-block">
@@ -75,7 +78,9 @@ export default {
     },
     disableSongAdding (index) {
       this.playlists[index].adding = false
-      console.log( 'disabling', this.playlists[index])
+    },
+    deletePlaylist (index) {
+      this.playlists.splice(index, 1)
     },
     slugify (name) {
       return name.toString().toLowerCase().trim()
@@ -93,5 +98,12 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
+}
+.playlist-book-icon {
+  margin-top: 5px;
+}
+.playlist-icons a {
+  margin-left: 5px;
+  color: grey;
 }
 </style>
