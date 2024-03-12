@@ -4,7 +4,7 @@
       <div class="column is-3">
         <Playlists 
           :playlists="playlists"
-          @add-playlist="addPlaytlist"
+          @add-playlist="addPlaylist"
           @delete-playlist="deletePlaylist"
         />
       </div>
@@ -17,6 +17,7 @@
           <PaginatedTableBody 
             :items="sortedSongs"
             @open-modal="openModal"
+            @add-song-to-list="addSongToList"
           />
         </table>
       </div>
@@ -25,6 +26,7 @@
       v-if="modalOpen"
       :playlists="playlists"
       @close-modal="closeModal"
+      @select-list-for-song="selectListForSong"
     />
   </div>
 </template>
@@ -69,7 +71,7 @@ export default {
       // assigns sortedSongs prop the value of emitted data
       this.sortedSongs = data
     },
-    addPlaytlist(data) {
+    addPlaylist(data) {
       this.playlists.push(data)
     },
     deletePlaylist(index) {
@@ -80,6 +82,12 @@ export default {
     },
     closeModal() {
       this.modalOpen = false
+    },
+    addSongToList(song) {
+      console.log(song)
+    },
+    selectListForSong(list) {
+      console.log(list)
     }
   }
 }

@@ -10,7 +10,7 @@
 					<li 
 						v-for="(list, index) in playlists" 
 						:key="index"
-						@click="selectPlaylist"
+						@click="selectListForSong(list)"
 					>
 						{{ list.name }}
 					</li>
@@ -22,17 +22,15 @@
 <script>
 export default {
 	props: {
-    playlists: {
-      type: Array,
-      required: true,
-    }
+		playlists: {
+			type: Array,
+			required: true,
+		}
   },
-	mounted() {
-		console.log('playlists in Modal', this.playlists)
-	},
 	methods: {
-		selectPlaylist() {
+		selectListForSong(list) {
 			this.$emit('close-modal')
+			this.$emit('select-list-for-song', list)
 		}
 	}
 }

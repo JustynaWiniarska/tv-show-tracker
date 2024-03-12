@@ -9,7 +9,7 @@
       <td>{{ song.title }}</td>
       <td>{{ song.album }}</td>
       <td>{{ song.genre }}
-        <span class="add-icon"><fa-icon icon="plus" @click="openModal" /></span>
+        <span class="add-icon"><fa-icon icon="plus" @click="addSongToPlaylist(song)" /></span>
       </td>
     </tr>
   </tbody>
@@ -55,8 +55,9 @@ export default {
     }
   },
   methods: {
-    openModal() {
+    addSongToPlaylist(song) {
       this.$emit('open-modal')
+      this.$emit('add-song-to-list', song)
     }
   }
 }
