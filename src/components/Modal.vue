@@ -6,8 +6,12 @@
 			</div>
 			<h1>Which playlist do you want to add this song to?</h1>
 
-				<ul>
-					<li v-for="(list, index) in playists" :key="index">
+				<ul class="playlists">
+					<li 
+						v-for="(list, index) in playlists" 
+						:key="index"
+						@click="selectPlaylist"
+					>
 						{{ list.name }}
 					</li>
 				</ul>
@@ -25,6 +29,11 @@ export default {
   },
 	mounted() {
 		console.log('playlists in Modal', this.playlists)
+	},
+	methods: {
+		selectPlaylist() {
+			this.$emit('close-modal')
+		}
 	}
 }
 </script>
@@ -57,6 +66,20 @@ export default {
 	top: 30px;
 	right: 30px;
 	font-size: 20px;
+	font-weight: bold;
+}
+
+.playlists {
+	margin: 15px 30px;
+}
+.playlists li {
+	padding-top: 8px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid lightgray;
+}
+
+.playlists li:hover {
+	cursor: pointer;
 	font-weight: bold;
 }
 </style>
