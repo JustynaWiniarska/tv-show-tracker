@@ -23,6 +23,7 @@
     </div>
     <Modal 
       v-if="modalOpen"
+      :playlists="playlists"
       @close-modal="closeModal"
     />
   </div>

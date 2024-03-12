@@ -1,6 +1,6 @@
 <template>
-  <div class="modal-overlay">
-		<div class="modal-for-adding-songs">
+  <div class="modal-overlay" @click="$emit('close-modal')">
+		<div class="modal-for-adding-songs" @click.stop>
 			<div class="close" @click="$emit('close-modal')">
 				x
 			</div>
@@ -17,19 +17,15 @@
 
 <script>
 export default {
-	data() {
-		return {
-			playlists: []
-		}
-	},
-  mounted() {
-    // send Playlists to local storage
-    const storedPlaylists = localStorage.getItem('playlists')
-    this.playlists = storedPlaylists ? JSON.parse(storedPlaylists) : []
-
-
-		console.log(storedPlaylists)
+	props: {
+    playlists: {
+      type: Array,
+      required: true,
+    }
   },
+	mounted() {
+		console.log('playlists in Modal', this.playlists)
+	}
 }
 </script>
 
