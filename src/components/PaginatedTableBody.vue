@@ -64,6 +64,15 @@ export default {
 
 <style>
 .add-icon {
-  float: right
+  float: right;
+  cursor: pointer;
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 26px;
+  padding-left: 5px;
+}
+
+.add-icon .svg-inline--fa {
+  height: 0.8em;
 }
 </style>

@@ -28,41 +28,28 @@
 
 <script>
 export default {
+  props: {
+    playlists: {
+      type: Array,
+      required: true,
+    }
+  },
   data () {
     return {
       newPlaylistName: '',
-      playlists: []
     }
-  },
-  watch: {
-    playlists: {
-      handler() {
-        localStorage.setItem('playlists', JSON.stringify(this.playlists));
-      },
-      deep: true,
-    }
-  },
-  created() {
-    // send Playlists to local storage
-    const storedPlaylists = localStorage.getItem('playlists')
-    this.playlists = storedPlaylists ? JSON.parse(storedPlaylists) : []
-
-    // disable song adding
-    this.playlists.forEach((pl, index) => {
-      this.playlists[index].adding = false
-    })
   },
   methods: {
     addPlaylist() {
-      this.playlists.push({
+      const data = {
         name: this.newPlaylistName,
         slug: this.slugify(this.newPlaylistName),
         songs: []
-      })
-      this.newPlaylistName = ''
+      }
+      this.$emit('add-playlist', data)
     },
     deletePlaylist (index) {
-      this.playlists.splice(index, 1)
+      this.$emit('delete-playlist', index)
     },
     slugify (name) {
       return name.toString().toLowerCase().trim()

@@ -6,13 +6,30 @@
 			</div>
 			<h1>Which playlist do you want to add this song to?</h1>
 
+				<ul>
+					<li v-for="(list, index) in playists" :key="index">
+						{{ list.name }}
+					</li>
+				</ul>
 		</div>
   </div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			playlists: []
+		}
+	},
+  mounted() {
+    // send Playlists to local storage
+    const storedPlaylists = localStorage.getItem('playlists')
+    this.playlists = storedPlaylists ? JSON.parse(storedPlaylists) : []
 
+
+		console.log(storedPlaylists)
+  },
 }
 </script>
 
@@ -43,5 +60,7 @@ export default {
 	position: absolute;
 	top: 30px;
 	right: 30px;
+	font-size: 20px;
+	font-weight: bold;
 }
 </style>
