@@ -8,15 +8,23 @@
       <td>{{ song.artist }}</td>
       <td>{{ song.title }}</td>
       <td>{{ song.album }}</td>
-      <td>{{ song.genre }}
-        <span class="add-icon"><fa-icon icon="plus" @click="addSongToPlaylist(song)" /></span>
+      <td class="last-column">{{ song.genre }}     
+        <SelectPlaylist 
+          @click="addSongToPlaylist(song)"
+          :playlists="playlists"
+        />
       </td>
     </tr>
   </tbody>
 </template>
 
 <script>
+import SelectPlaylist from './SelectPlaylist'
+
 export default {
+  components: {
+    SelectPlaylist
+  },
   props: {
     items: {
       type: Array,
@@ -26,7 +34,11 @@ export default {
       type: Number,
       required: false,
       default: 50
-    }
+    },
+		playlists: {
+			type: Array,
+			required: true,
+		}
   },
   data() {
     return {
@@ -75,5 +87,10 @@ export default {
 
 .add-icon .svg-inline--fa {
   height: 0.8em;
+}
+
+.last-column {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

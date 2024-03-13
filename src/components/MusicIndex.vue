@@ -16,18 +16,13 @@
           />
           <PaginatedTableBody 
             :items="sortedSongs"
+            :playlists="playlists"
             @open-modal="openModal"
             @add-song-to-list="addSongToList"
           />
         </table>
       </div>
     </div>
-    <Modal 
-      v-if="modalOpen"
-      :playlists="playlists"
-      @close-modal="closeModal"
-      @select-list-for-song="selectListForSong"
-    />
   </div>
 </template>
 
@@ -36,20 +31,17 @@ import MusicData from '@/assets/list.json'
 import MusicSort from './MusicSort.vue';
 import PaginatedTableBody from './PaginatedTableBody.vue';
 import Playlists from './Playlists.vue'
-import Modal from './Modal.vue'
 
 export default {
   components: {
     MusicSort,
     PaginatedTableBody,
-    Playlists,
-    Modal
+    Playlists
   },
   data () {
     return {
       songs: MusicData,
       sortedSongs: MusicData,
-      modalOpen: false,
       playlists: []
     }
   },
@@ -76,12 +68,6 @@ export default {
     },
     deletePlaylist(index) {
       this.playlists.splice(index, 1)
-    },
-    openModal() {
-      this.modalOpen = true;
-    },
-    closeModal() {
-      this.modalOpen = false
     },
     addSongToList(song) {
       console.log(song)
