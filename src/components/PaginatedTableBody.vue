@@ -10,8 +10,8 @@
       <td>{{ song.album }}</td>
       <td class="last-column">{{ song.genre }}     
         <SelectPlaylist 
-          @click="addSongToPlaylist(song)"
           :playlists="playlists"
+          :song="song"
         />
       </td>
     </tr>
@@ -64,12 +64,6 @@ export default {
   watch: {
     items() {
       this.page = 1
-    }
-  },
-  methods: {
-    addSongToPlaylist(song) {
-      this.$emit('open-modal')
-      this.$emit('add-song-to-list', song)
     }
   }
 }

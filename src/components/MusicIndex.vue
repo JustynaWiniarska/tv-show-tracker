@@ -68,12 +68,6 @@ export default {
     },
     deletePlaylist(index) {
       this.playlists.splice(index, 1)
-    },
-    addSongToList(song) {
-      console.log(song)
-    },
-    selectListForSong(list) {
-      console.log(list)
     }
   }
 }

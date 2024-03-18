@@ -20,14 +20,19 @@ export default {
 		playlists: {
 			type: Array,
 			required: true,
-		}
+		},
+    song: {
+      type: Object,
+      required: false
+    }
   },
   methods: {
     emitSelectedPlaylist(event) {
       const selectedIndex = event.target.selectedIndex;
       const selectedPlaylist = this.playlists[selectedIndex - 1];
 
-      this.$emit('select-playlist', selectedPlaylist)
+      selectedPlaylist.songs.push(this.song)
+      alert('The song was added to the playlist.')
     }
   }
 }
