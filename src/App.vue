@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="title">music library</h1>
-    <router-view />
+    <h1 class="title">movie tracker</h1>
   </div>
 </template>
 
