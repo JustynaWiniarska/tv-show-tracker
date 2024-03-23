@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1 class="title">movie tracker</h1>
+    <router-view></router-view>
   </div>
 </template>
 

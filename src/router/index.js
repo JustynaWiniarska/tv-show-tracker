@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Subscriptions from '../components/Subscriptions.vue'
 
 const routes = [
-  // { path: '/', component: MusicIndex },
+  { path: '/', component: Subscriptions },
 ]
 
 const router = createRouter({
