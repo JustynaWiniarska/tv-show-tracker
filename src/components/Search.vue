@@ -33,12 +33,15 @@
 			>
 				<div class="card">
 					<div class="card-image">
-						<img 
-							v-if="show.show.image" 
-							:src="show.show.image.medium"
-							:alt="show.show.name"
-						/>
-												<!-- router-link -->
+						<router-link
+							:to="'/shows/' + show.show.id"
+						>
+							<img 
+								v-if="show.show.image" 
+								:src="show.show.image.medium"
+								:alt="show.show.name"
+							/>
+						</router-link>
 					</div>
 					<div class="card-content">
 						<p class="title is-4">
@@ -79,6 +82,8 @@ export default {
 					this.noResults = true
 				} else {
 					this.searchResult = response
+
+					console.log(response)
 				}
 			})
 		},
