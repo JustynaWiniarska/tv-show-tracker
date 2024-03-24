@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h1 class="title">TV Show Tracker</h1>
 		<form 
 			class="m-4" 
 			@submit.prevent="search"
@@ -45,8 +46,9 @@
 					</div>
 					<div class="card-content">
 						<p class="title is-4">
-							{{ show.show.name }}
-														<!-- router-link -->
+							<router-link :to="'/shows/' + show.show.id">
+								{{ show.show.name }}
+							</router-link>
 						</p>
 						<p class="subtitle is-6">Running on 
 							<span>{{ show.show.network ? show.show.network.name : show.show.webChannel.name }}</span>
