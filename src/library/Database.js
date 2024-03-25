@@ -1,12 +1,8 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+import Firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
+
+const config = {
   apiKey: "AIzaSyDTaj_Y2E6efWsiTxi9-GNBM_ZZgyydgqk",
   authDomain: "movie-tracker-3a46d.firebaseapp.com",
   projectId: "movie-tracker-3a46d",
@@ -14,17 +10,19 @@ const firebaseConfig = {
   messagingSenderId: "450920075713",
   appId: "1:450920075713:web:5d0d886add37057af6df40",
   measurementId: "G-36PJTE5CSQ"
-};
+}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let App = Firebase.initializeApp(config)
+let Firestore = App.firestore()
+Firestore.settings({ timestampsInSnapshots: true })
 
 export default {
-    set_data (subscriptions) {
-      Firestore.collection('subscriptions').doc('shows').set({ subscriptions })
-    },
-    get_data () {
-      return Firestore.collection('subscriptions').doc('shows').get()
-    }
+  set_data (subscriptions) {
+    Firestore.collection('subscriptions').doc('shows').set({ subscriptions })
+  },
+  get_data () {
+    return Firestore.collection('subscriptions').doc('shows').get()
   }
+}
+
+  

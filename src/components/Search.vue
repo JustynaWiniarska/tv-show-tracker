@@ -84,8 +84,6 @@ export default {
 					this.noResults = true
 				} else {
 					this.searchResult = response
-
-					console.log(response)
 				}
 			})
 		},
